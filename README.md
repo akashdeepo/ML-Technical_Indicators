@@ -1,6 +1,6 @@
 # Financial Market Forecasting with Random Forest and Technical Indicators
 
-This repository contains code for predicting financial market movements using a Random Forest Regressor (RFR) model with various technical indicators.
+This repository contains code for predicting financial market movements using a Random Forest Regressor (RFR) model with various technical indicators. Run main.py once all libraries are installed.
 
 ## Overview
 
