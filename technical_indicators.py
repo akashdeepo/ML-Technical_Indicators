@@ -83,12 +83,13 @@ def calculate_obv(data):
     data['OBV'] = obv
     return data
 
+
 def calculate_cci(data, window=20):
-    """Calculate Commodity Channel Index (CCI) using typical price and log returns."""
-    tp = (data['lr_high'] + data['lr_low'] + data['lr_close']) / 3
-    rolling_mean = tp.rolling(window).mean()
-    mean_deviation = tp.rolling(window).apply(lambda x: pd.Series(x).mad(), raw=True)
-    data['CCI'] = (tp - rolling_mean) / (0.015 * mean_deviation)
+    tp = (data['high'] + data['low'] + data['close']) / 3
+    sma = tp.rolling(window=window).mean()
+    mean_deviation = tp.rolling(window).apply(lambda x: np.abs(x - x.mean()).mean(), raw=True)
+    cci = (tp - sma) / (0.015 * mean_deviation)
+    data['CCI'] = cci
     return data
 
 def calculate_ichimoku(data):
