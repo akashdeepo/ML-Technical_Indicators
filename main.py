@@ -1,10 +1,10 @@
+# main.py
+
 import pandas as pd
-import matplotlib.pyplot as plt
 import numpy as np
 from tqdm import tqdm
 from data_preprocessing import load_and_prepare_data, create_target_variable, z_score_volume
-from rfr import calculate_and_save_metrics
-from technical_indicators import *  # Import all technical indicators
+import technical_indicators as ti
 from rfr import *
 import os
 
@@ -30,14 +30,11 @@ X_train, X_test, y_train, y_test = split_data(data, base_features, target)
 print(f"Training data: {X_train.index[0]} through {X_train.index[-1]}")
 print(f"Testing data: {X_test.index[0]} through {X_test.index[-1]}")
 
+# Tune hyperparameters
+best_params = tune_hyperparameters(X_train, y_train)
+print("Best hyperparameters found:", best_params)
+
 # Train and evaluate the base model
-best_params = {
-    'max_depth': 20, 
-    'max_features': 'sqrt', 
-    'min_samples_leaf': 2, 
-    'min_samples_split': 2, 
-    'n_estimators': 300
-}
 model_name = "Base_Random_Forest"
 model, y_train_pred, y_test_pred, metrics = train_and_evaluate_model(X_train, y_train, X_test, y_test, best_params, model_name)
 
@@ -50,17 +47,17 @@ plot_and_save_results(y_train, y_train_pred, y_test, y_test_pred, metrics, base_
 
 # List of indicators to be calculated
 indicators = {
-    'SMA': calculate_sma,
-    'EMA': calculate_ema,
-    'MACD': calculate_macd,
-    'RSI': calculate_rsi,
-    'Bollinger Bands': calculate_bollinger_bands,
-    'Stochastic Oscillator': calculate_stochastic_oscillator,
-    'Fibonacci Retracement': calculate_fibonacci_retracement,
-    'ADX': calculate_adx,
-    'OBV': calculate_obv,
-    'CCI': calculate_cci,
-    'Ichimoku Cloud': calculate_ichimoku
+    'SMA': ti.calculate_sma,
+    'EMA': ti.calculate_ema,
+    'MACD': ti.calculate_macd,
+    'RSI': ti.calculate_rsi,
+    'Bollinger Bands': ti.calculate_bollinger_bands,
+    'Stochastic Oscillator': ti.calculate_stochastic_oscillator,
+    'Fibonacci Retracement': ti.calculate_fibonacci_retracement,
+    'ADX': ti.calculate_adx,
+    'OBV': ti.calculate_obv,
+    'CCI': ti.calculate_cci,
+    'Ichimoku Cloud': ti.calculate_ichimoku
 }
 
 # Calculate and evaluate models with each indicator added

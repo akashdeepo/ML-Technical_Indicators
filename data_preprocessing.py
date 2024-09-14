@@ -1,4 +1,5 @@
 # data_preprocessing.py
+
 import pandas as pd
 import numpy as np
 
@@ -6,7 +7,7 @@ def load_and_prepare_data(filepath, sort_by='timestamp', ascending=True):
     data = pd.read_csv(filepath, parse_dates=['timestamp'], index_col='timestamp')
     data.sort_values(by=sort_by, ascending=ascending, inplace=True)
     for col in ['open', 'high', 'low', 'close']:
-        data[f'lr_{col}'] = np.log(data[col] / data['close'].shift(1))
+        data[f'lr_{col}'] = np.log(data[col] / data[col].shift(1))
     data.dropna(inplace=True)
     return data
 
