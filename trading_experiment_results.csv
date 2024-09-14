@@ -1,0 +1,14 @@
+Model+Indicator,Final Portfolio Value,Number of Trades
+Random_Forest_with_CCI,10012.08499999998,1293
+Random_Forest_with_EMA,10009.428000000004,1311
+Random_Forest_with_SMA,10009.355999999974,1265
+Random_Forest_with_OBV,10008.106999999998,1262
+Random_Forest_with_Ichimoku_Cloud,10007.283000000012,1211
+Random_Forest_with_Winners,10006.145999999959,1375
+Random_Forest_with_Fibonacci_Retracement,10005.742999999962,1362
+Random_Forest_with_MACD,10005.726000000008,1267
+Base_Random_Forest,10005.091999999968,1364
+Random_Forest_with_Bollinger_Bands,10004.722999999989,1295
+Random_Forest_with_Stochastic_Oscillator,10003.310999999989,1283
+Random_Forest_with_RSI,10002.948999999979,1347
+Random_Forest_with_ADX,10002.475999999968,1339
